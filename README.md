@@ -38,6 +38,7 @@ wsl --install
 3. Após a instalação, reinicie o computador quando solicitado.
 4. Ao abrir o Ubuntu pela primeira vez, ele pedirá para criar um nome de usuário e senha Linux.
 5. Depois, no terminal do Ubuntu, execute:
+
 OBS: Não precisa digitar o 'bash', apenas o comando embaixo.
 
 ```bash
@@ -87,6 +88,7 @@ ChiefInfiniteCables/
 ## 🛠️ Como compilar
 
 1. Abra o **terminal do Ubuntu (WSL)** e vá até a pasta do projeto. Exemplo:
+
 OBS: Mesmo se estiver em português, ele tem que ser Users.
 
 ```bash
