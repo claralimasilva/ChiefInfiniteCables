@@ -10,7 +10,7 @@ Este projeto implementa três métodos numéricos para encontrar raízes da fun�
 
 ## 🎯 Objetivo
 
-Resolver numericamente a equação:
+Resolver numericamente a equação de benchmark:
 ```
 f(d) = d * tanh(d) - a
 ```
