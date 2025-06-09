@@ -119,10 +119,11 @@ Após a compilação, execute no terminal WSL:
 
 O programa solicitará:
 
+- Método desejado: `newton`, `modificado`, ou `secante`
 - Valor de `a`
 - Valor inicial `d₀`
 - Valor de `ε` (epsilon)
-- Método desejado: `newton`, `modificado`, ou `secante`
+
 
 ---
 
