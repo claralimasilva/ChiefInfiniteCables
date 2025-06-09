@@ -1,4 +1,4 @@
-# Projeto – Métodos de Cálculo Numérico
+# ChiefInfiniteCables – Tema 2 de Cálculo Numérico
 
 Este projeto implementa três métodos numéricos para encontrar raízes da função:
 
@@ -10,11 +10,13 @@ Este projeto implementa três métodos numéricos para encontrar raízes da fun�
 
 ## 🎯 Objetivo
 
-Resolver numericamente a equação:
+Resolver numericamente a equação do Tema 2 do trabalho:
+
 ```
-f(d) = d * tanh(d) - a
+f(d) = a·e^d - 4d²
 ```
-com `a`, `d₀` e `ε` fornecidos pelo usuário via terminal.
+
+com `a`, `d₀` e `ε` fornecidos pelo usuário via terminal. Essa função representa um fenômeno físico onde o deslocamento `d` causa amplificação quando `d > 0.7`, sendo necessário determinar com precisão a raiz.
 
 ---
 
@@ -38,7 +40,6 @@ wsl --install
 3. Após a instalação, reinicie o computador quando solicitado.
 4. Ao abrir o Ubuntu pela primeira vez, ele pedirá para criar um nome de usuário e senha Linux.
 5. Depois, no terminal do Ubuntu, execute:
-OBS: Não precisa digitar o 'bash', apenas o comando embaixo.
 
 ```bash
 sudo apt update && sudo apt install build-essential -y
@@ -87,7 +88,6 @@ ChiefInfiniteCables/
 ## 🛠️ Como compilar
 
 1. Abra o **terminal do Ubuntu (WSL)** e vá até a pasta do projeto. Exemplo:
-OBS: Mesmo se estiver em português, ele tem que ser Users.
 
 ```bash
 cd /mnt/c/Users/seu-usuario/Downloads/ChiefInfiniteCables
@@ -99,7 +99,7 @@ cd /mnt/c/Users/seu-usuario/Downloads/ChiefInfiniteCables
 make menu
 ```
 
-3. Ou para compilar todos os métodos:
+3. Ou para compilar todos os métodos individualmente:
 
 ```bash
 make
@@ -117,10 +117,10 @@ Após a compilação, execute no terminal WSL:
 
 O programa solicitará:
 
+- Método desejado: `newton`, `modificado`, ou `secante`
 - Valor de `a`
 - Valor inicial `d₀`
 - Valor de `ε` (epsilon)
-- Método desejado: `newton`, `modificado`, ou `secante`
 
 ---
 
@@ -133,3 +133,4 @@ make clean
 ```
 
 ---
+
