@@ -1,16 +1,28 @@
-all: main
-
 CXX = clang++
-override CXXFLAGS += -g -Wall -Werror
+override CXXFLAGS += -g -Wall -Werror -Iinclude
 
-SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.cpp' -print | sed -e 's/ /\\ /g')
-HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.h' -print)
+BIN_DIR = bin
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
 
-main: $(SRCS) $(HEADERS)
-	$(CXX) $(CXXFLAGS) $(SRCS) -o "$@"
+all: $(BIN_DIR) bin/newton bin/modificado bin/secante bin/menu
 
-main-debug: $(SRCS) $(HEADERS)
-	NIX_HARDENING_ENABLE= $(CXX) $(CXXFLAGS) -O0  $(SRCS) -o "$@"
+menu: bin/menu
+
+bin/newton: src/newtonRaphson.cpp tests/testesNR.cpp src/erro.cpp | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+bin/modificado: src/newtonModificado.cpp tests/testesModificado.cpp src/erro.cpp | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+bin/secante: src/secante.cpp tests/testesSecante.cpp src/erro.cpp | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+bin/menu: main.cpp src/newtonRaphson.cpp src/newtonModificado.cpp src/secante.cpp src/erro.cpp src/funcao.cpp | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+main-debug:
+	$(CXX) $(CXXFLAGS) -O0 src/newtonRaphson.cpp tests/testesNR.cpp src/erro.cpp -o bin/main-debug
 
 clean:
-	rm -f main main-debug
+	rm -f bin/*
