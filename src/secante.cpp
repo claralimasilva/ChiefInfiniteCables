@@ -1,5 +1,7 @@
 #include <iostream>
 #include <iomanip>
+#include <limits>
+#include <cmath>
 #include "funcao.h"
 #include "newtonRaphson.h"
 #include "newtonModificado.h"

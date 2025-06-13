@@ -1,5 +1,7 @@
 #include <iostream>
 #include <iomanip>
+#include <limits>
+#include <cmath>
 #include "funcao.h"
 #include "newtonRaphson.h"
 #include "newtonModificado.h"
@@ -9,19 +11,37 @@
 namespace Metodos {
 
     double newtonModificado(double a, double d0, double epsilon, int maxIter) {
-        std::cout << "Executando Newton Modificado para f(d) = a·e^d - 4d²..." << std::endl;
+        std::cout << "Executando Newton com Inclinação Fixa para f(d) = a·e^d - 4d²..." << std::endl;
         double d = d0;
 
-        for (int i = 1; i <= maxIter; ++i) {
-            double d_next = d - f(d, a) * df(d, a) / (df(d, a) * df(d, a) - f(d, a) * d2f(d, a));
-            double erro = erro_absoluto(d_next, d);
-            std::cout << "Iteração " << i << ": d = " << d_next << ", erro = " << erro << ", f(d) = " << f(d_next, a) << std::endl;
+        double denominador_fixo = df(d0, a);
 
-            if (erro < epsilon) break;
-            d = d_next;
+        if (std::abs(denominador_fixo) < 1e-12) {
+            std::cout << "ERRO: A primeira derivada no ponto inicial (d0) é zero. O método falhou." << std::endl;
+            return std::numeric_limits<double>::quiet_NaN();
         }
 
+        std::cout << "Usando denominador fixo f'(d0) = " << denominador_fixo << std::endl;
+
+        for (int i = 1; i <= maxIter; ++i) {
+            double f_val = f(d, a);
+            
+            double d_next = d - f_val / denominador_fixo;
+            double erro = erro_absoluto(d_next, d);
+
+            d = d_next; 
+
+            std::cout << "Iteração " << i << ": d = " << d << ", erro = " << erro << ", f(d) = " << f(d, a) << std::endl;
+
+            if (erro < epsilon) {
+                std::cout << "\nConvergência atingida com a precisão desejada." << std::endl;
+                break;
+            }
+            if (i == maxIter) {
+                std::cout << "\nNúmero máximo de iterações atingido." << std::endl;
+            }
+        }
         return d;
     }
-
+    
 }
